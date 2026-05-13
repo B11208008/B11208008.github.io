@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不只是睡外面！露營教我的生活浪漫</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deepSea: '#020617',
+                        abyss: '#0f172a',
+                        biolume: '#22d3ee',
+                        emeraldNeon: '#10b981',
+                        coralPink: '#f43f5e',
+                    },
+                    fontFamily: {
+                        display: ['Outfit', 'Noto Sans TC', 'sans-serif'],
+                        body: ['Noto Sans TC', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #020617;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #22d3ee 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .banner-container {
+            position: relative;
+            height: 80vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .banner-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6) saturate(1.2);
+            z-index: -1;
+        }
+
+        .bioluminescent-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+
+        .section-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-biolume/30 selection:text-biolume">
+
+    <!-- Hero Banner -->
+    <header class="banner-container">
+        <img src='https://opal.google/board/blobs/af5a87fb-70ac-4a57-8f8e-7b6e29cc8ed8' alt='不決是睡外面！露營教我的生活浪漫' class="banner-image" />
+        
+        <div class="bioluminescent-glow top-1/4 left-1/4 animate-pulse-slow"></div>
+        <div class="bioluminescent-glow bottom-1/4 right-1/4 animate-pulse-slow" style="animation-delay: 2s;"></div>
+
+        <div class="z-10 text-center px-4 max-w-4xl">
+            <span class="inline-block px-4 py-1 mb-6 text-xs font-bold tracking-widest uppercase border border-biolume/50 text-biolume rounded-full bg-biolume/10 backdrop-blur-sm animate-float">
+                Outdoor Hospitality & Evolution
+            </span>
+            <h1 class="font-display text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+                不只是睡外面！<br/>
+                <span class="gradient-text">露營教我的生活浪漫</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
+                從原始荒野到黑科技進化，一場關於星空、營火與科技交織的靜謐旅程。
+            </p>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-20">
+        
+        <!-- Bento Grid Layout -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+            
+            <!-- Section 1: Intro (Large Span) -->
+            <section class="md:col-span-8 section-card glass-panel rounded-3xl p-8 md:p-12 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-biolume/5 rounded-full -mr-16 -mt-16 group-hover:bg-biolume/10 transition-all duration-700"></div>
+                <h2 class="font-display text-3xl font-bold mb-6 text-biolume flex items-center">
+                    <span class="mr-4 text-sm font-mono opacity-50">01</span>
+                    露營是什麼？這是一種生活態度！
+                </h2>
+                <div class="space-y-4 text-slate-300 leading-relaxed text-lg">
+                    <p>
+                        在水泥叢林待久了，我們總會有一種集體性的焦慮，試圖在行事曆的縫隙中尋找喘息。對我而言，露營從來不只是「換個地方睡覺」的苦行，而是一種有意識的<strong>「深度充電」</strong>。它讓我們暫時剝離都市的便利，重新校準感官。
+                    </p>
+                    <p>
+                        當你定義你的「家」時，露營展現了極致的自由：你可以是背著單人輕量帳篷、隱入荒野的隱士；也可以是開著移動式豪宅（RV），在湖畔享受熱水澡與微型客廳的現代遊牧民族。
+                    </p>
+                    <p class="text-emeraldNeon font-medium italic">
+                        露營的靈魂精髓，往往藏在那些「麻煩卻快樂著」的儀式感中——清晨被鳥鳴喚醒而非鬧鐘，親手劈柴、在跳動的火光前煮一碗尋常的泡麵。
+                    </p>
+                </div>
+            </section>
+
+            <!-- Sidebar: Key Quote / Highlight -->
+            <section class="md:col-span-4 flex flex-col gap-8">
+                <div class="glass-panel rounded-3xl p-8 border-l-4 border-biolume flex-1 flex flex-col justify-center">
+                    <p class="text-2xl font-display font-light italic leading-snug">
+                        "這份與自然共處的浪漫，才是我們不斷回歸曠野的真諦。"
+                    </p>
+                </div>
+                <div class="bg-gradient-to-br from-emeraldNeon/20 to-biolume/20 backdrop-blur-md rounded-3xl p-8 border border-white/10">
+                    <h3 class="text-xl font-bold mb-4 text-white">露營數據庫</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-end border-b border-white/5 pb-2">
+                            <span class="text-sm text-slate-400">追求平靜比例</span>
+                            <span class="text-2xl font-display font-bold text-biolume">70%</span>
+                        </div>
+                        <div class="flex justify-between items-end border-b border-white/5 pb-2">
+                            <span class="text-sm text-slate-400">數位遊牧首選</span>
+                            <span class="text-2xl font-display font-bold text-biolume">Glamping</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: History (Asymmetric) -->
+            <section class="md:col-span-12 lg:col-span-5 section-card bg-slate-900/50 border border-slate-800 rounded-3xl p-8">
+                <h2 class="font-display text-3xl font-bold mb-6 text-biolume flex items-center">
+                    <span class="mr-4 text-sm font-mono opacity-50">02</span>
+                    歷史挖挖哇
+                </h2>
+                <h3 class="text-xl text-emeraldNeon mb-4 font-semibold italic">從「活下去」到「玩起來」</h3>
+                <div class="space-y-4 text-slate-400 text-base leading-relaxed">
+                    <p>回望歷史，人類紮營的初衷與「浪漫」二字完全絕緣。古人的帳篷是為了打仗、遷徙或在惡劣環境中活下去。</p>
+                    <div class="pl-4 border-l border-biolume/30 space-y-4 mt-6">
+                        <div>
+                            <span class="text-white font-bold block">1869: 莫里熱潮</span>
+                            <p class="text-sm">威廉·莫里出版《阿第倫達克山脈的營地生活》，引爆都市荒野潮。</p>
+                        </div>
+                        <div>
+                            <span class="text-white font-bold block">1908: 現代露營之父</span>
+                            <p class="text-sm">湯瑪斯·希蘭·霍爾丁撰寫《露營者手冊》，開啟騎行露營時代。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: New Normal (Modern Visual) -->
+            <section class="md:col-span-12 lg:col-span-7 section-card glass-panel rounded-3xl p-8 relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-biolume/10 blur-3xl rounded-full"></div>
+                <h2 class="font-display text-3xl font-bold mb-6 text-biolume flex items-center">
+                    <span class="mr-4 text-sm font-mono opacity-50">03</span>
+                    2024 露營新常態
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-white font-bold mb-2">戶外款待正流行</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            步入 2024 年，露營已演化為「戶外款待 (Outdoor Hospitality)」。豪華露營 (Glamping) 成為入坑首選，泡泡屋、樹屋提供了五星級服務。
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold mb-2">數位遊牧的延伸</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            拜 Starlink 與太陽能所賜，我們能在森林深處辦公，實現真正意義上的「工作與生活平衡」。
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-300">#Starlink</span>
+                    <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-300">#Calm-cations</span>
+                    <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-300">#Glamping</span>
+                </div>
+            </section>
+
+            <!-- Section 4: Arguments (High Contrast) -->
+            <section class="md:col-span-12 section-card bg-biolume/5 border border-biolume/20 rounded-3xl p-8 md:p-12">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/3">
+                        <h2 class="font-display text-4xl font-extrabold mb-4 text-white leading-tight">
+                            露營界的分歧：<br/><span class="text-coralPink">理想與現實</span>
+                        </h2>
+                        <p class="text-slate-400">當露營變得精緻與普及，矛盾也隨之而來。</p>
+                    </div>
+                    <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="p-6 bg-slate-900/80 rounded-2xl border border-slate-700">
+                            <h4 class="text-biolume font-bold mb-2">LNT 準則之爭</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">保護環境是共識，但過於嚴苛是否排擠了新手或忽視了在地文化？</p>
+                        </div>
+                        <div class="p-6 bg-slate-900/80 rounded-2xl border border-slate-700">
+                            <h4 class="text-biolume font-bold mb-2">國家公園訂位戰</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">預約制取消引發兩極評論：公平性 vs. 環境飽和度的拉鋸。</p>
+                        </div>
+                        <div class="p-6 bg-slate-900/80 rounded-2xl border border-slate-700">
+                            <h4 class="text-biolume font-bold mb-2">網美效應衝擊</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">社群媒體究竟是推廣了自然，還是成為了破壞自然的幫兇？</p>
+                        </div>
+                        <div class="p-6 bg-slate-900/80 rounded-2xl border border-slate-700">
+                            <h4 class="text-biolume font-bold mb-2">渡假村化憂慮</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">老派露營者無奈感：傳統營地變少、價格攀升，原始感逐漸消失。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Future (Sci-Fi Aesthetic) -->
+            <section class="md:col-span-12 section-card bg-gradient-to-br from-slate-900 to-deepSea border border-biolume/30 rounded-3xl p-8 md:p-12 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#22d3ee 0.5px, transparent 0.5px); background-size: 20px 20px;"></div>
+                <div class="relative z-10">
+                    <h2 class="font-display text-3xl font-bold mb-10 text-center tracking-widest uppercase">
+                        未來露營：<span class="gradient-text">野外鋼鐵人基地</span>
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center group">
+                            <div class="w-16 h-16 bg-biolume/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <svg class="w-8 h-8 text-biolume" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 2v20m10-10H2"></path></svg>
+                            </div>
+                            <h4 class="text-white font-bold mb-2">智慧帳篷</h4>
+                            <p class="text-xs text-slate-400">App 控制溫濕度，自動調節風速支架強度，安全感倍增。</p>
+                        </div>
+                        <div class="text-center group">
+                            <div class="w-16 h-16 bg-emeraldNeon/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <svg class="w-8 h-8 text-emeraldNeon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <h4 class="text-white font-bold mb-2">再生能源革命</h4>
+                            <p class="text-xs text-slate-400">掌上型風機與 BioLite 爐灶，實踐熱電轉換與全面再生。</p>
+                        </div>
+                        <div class="text-center group">
+                            <div class="w-16 h-16 bg-biolume/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <svg class="w-8 h-8 text-biolume" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <h4 class="text-white font-bold mb-2">身心修復站</h4>
+                            <p class="text-xs text-slate-400">生物感測服飾監控健康，結合聲頻療癒與全回收設計。</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 p-6 glass-panel rounded-2xl text-center border-biolume/20">
+                        <p class="text-slate-300 italic">
+                            露營將進化為終極的「身心修復站」，讓我們在不留痕跡的前提下，獲得最深層的自然慰藉。
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Reader Tip / CTA -->
+        <div class="mt-20 glass-panel rounded-[2rem] p-8 md:p-12 text-center border-t-2 border-biolume/40 relative overflow-hidden">
+            <div class="relative z-10">
+                <div class="text-5xl mb-6">🌲</div>
+                <h3 class="font-display text-2xl font-bold mb-4 text-white">給讀者的話</h3>
+                <p class="text-slate-400 max-w-2xl mx-auto leading-relaxed mb-8">
+                    無論你是追求極簡、將一切家當背在肩上的「背包客」，還是熱愛空手入山的豪華露營家，在大自然面前，我們對自由的渴望都是一樣的。
+                </p>
+                <button class="px-8 py-4 bg-gradient-to-r from-biolume to-emeraldNeon text-deepSea font-bold rounded-full hover:shadow-[0_0_20px_rgba(34,211,238,0.5)] transition-all active:scale-95">
+                    山裡見！準備出發
+                </button>
+            </div>
+            <!-- Decorative circle -->
+            <div class="absolute -bottom-24 left-1/2 -translate-x-1/2 w-64 h-64 bg-biolume/20 blur-[100px] rounded-full"></div>
+        </div>
+
+    </main>
+
+    <script>
+        // Optional: Interaction for bio-glow elements following mouse cursor lightly
+        document.addEventListener('mousemove', (e) => {
+            const glows = document.querySelectorAll('.bioluminescent-glow');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            glows.forEach((glow, index) => {
+                const speed = (index + 1) * 20;
+                glow.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
