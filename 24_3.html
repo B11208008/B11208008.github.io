@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大學生心理與成長資源庫 | Sherry's Notes</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* 搜尋框設計 */
+        .search-section {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 600px;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box:focus {
+            border-color: var(--secondary-color);
+        }
+
+        h2 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 0.3rem;
+        }
+
+        /* FAQ 手風琴設計 */
+        .faq-section {
+            margin-bottom: 4rem;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.2rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--card-bg);
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #f1f8ff;
+        }
+
+        .faq-answer {
+            padding: 0 1.2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: #555;
+        }
+
+        .faq-answer.active {
+            padding: 1.2rem;
+            border-top: 1px solid #eee;
+        }
+
+        /* 資源庫網格設計 */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #e8f4fd;
+            color: var(--secondary-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            align-self: flex-start;
+        }
+
+        .resource-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        .resource-desc {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .resource-link {
+            text-decoration: none;
+            color: white;
+            background-color: var(--secondary-color);
+            padding: 0.6rem 1rem;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .resource-link:hover {
+            background-color: #2980b9;
+        }
+
+        /* 查無結果提示 */
+        .no-result {
+            display: none;
+            text-align: center;
+            color: #7f8c8d;
+            margin-top: 2rem;
+            font-style: italic;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.5rem; }
+            .search-box { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>大學生心理與成長資源庫</h1>
+        <p>運用心理學重新整理人生，找回專注、克服焦慮與自我懷疑</p>
+    </header>
+
+    <div class="container">
+        <section class="search-section">
+            <input type="text" id="searchInput" class="search-box" placeholder="搜尋關鍵字：面試、拖延、MBTI、焦慮...">
+        </section>
+
+        <section class="faq-section">
+            <h2>常見成長與心理 FAQ</h2>
+            <div id="faqList">
+                <div class="faq-item">
+                    <div class="faq-question">Q: 面對實習或找工作，履歷跟面試該怎麼準備才不會踩雷？ <span>▼</span></div>
+                    <div class="faq-answer">
+                        <p>進入職場不是去上學，老闆沒有義務教你。在求職前最重要的準備是「做功課」，面試時千萬不要問網路上查得到的資訊，這只會凸顯你沒有事先做好研究。提出你在研究公司營運狀態後發現的趨勢或問題，才能展現你的能力與好奇心。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q: 事情很多總是拖延，越積越多覺得焦慮怎麼辦？ <span>▼</span></div>
+                    <div class="faq-answer">
+                        <p>解除焦慮感最有效的方式就是「行動」。只要一開始，焦慮感就會減輕。建議先從清單中挑選「最簡單的一件事」去執行（Foot in the door），當你踏出第一步，動力就會像騎腳踏車一樣帶動起來。此外，也要學會分辨哪些是自己能掌控的，哪些是無法掌控的。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q: 得到讚美或好成績時，總覺得自己配不上，害怕被看穿是運氣好？ <span>▼</span></div>
+                    <div class="faq-answer">
+                        <p>這可能是「冒牌者症候群（Imposter Syndrome）」。很多人（包括高成就者）都會在面對新挑戰時感到自我否定與恐慌。意識到這是一種常見的心理現象是第一步，將你的成就記錄下來，不要總是用「我只是運氣好」來抹煞自己的努力。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q: MBTI 測驗可以決定我適合哪種工作嗎？ <span>▼</span></div>
+                    <div class="faq-answer">
+                        <p>MBTI 是幫助你認識自己「原廠設定」的一把鑰匙，它測出的是你天生的思考與決策模式，並不等同於職能。與其讓 MBTI 限制你（例如認為 I 人就不能做業務），不如利用它來了解自己可以如何運用優勢，在職場中找到最適合自己的溝通與做事策略。</p>
+                    </div>
+                </div>
+            </div>
+            <p id="faqNoResult" class="no-result">在 FAQ 中找不到相關問題。</p>
+        </section>
+
+        <section class="resource-section">
+            <h2>影音資源庫</h2>
+            <div class="resource-grid" id="resourceList">
+                
+                <div class="resource-card">
+                    <span class="tag">#求職準備</span>
+                    <h3 class="resource-title">"肯學習"是求職地雷？找工作前６個心態與準備</h3>
+                    <p class="resource-desc">畢業季與實習申請必看。了解面試官的心態，停止用「學生思維」找工作，學會做深入的公司研究。</p>
+                    <a href="#" class="resource-link">觀看筆記</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="tag">#時間管理</span>
+                    <h3 class="resource-title">緩解焦慮與拖延：三個行動建議</h3>
+                    <p class="resource-desc">大腦過載時容易產生逃避心理。教你如何透過極微小的行動開始，打破焦慮與拖延的惡性循環。</p>
+                    <a href="#" class="resource-link">觀看筆記</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="tag">#自我覺察</span>
+                    <h3 class="resource-title">自我否定？對讚美感到焦慮？什麼是冒牌者經驗？</h3>
+                    <p class="resource-desc">深度解析冒牌者症候群，理解為何優秀的人也常覺得自己「不夠好」，並學習如何接納真實的自己。</p>
+                    <a href="#" class="resource-link">觀看筆記</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="tag">#MBTI解析</span>
+                    <h3 class="resource-title">到底E人還是I人？找到原廠設定，做舒服的自己</h3>
+                    <p class="resource-desc">打破對內外向的迷思。I 人不一定社恐，E 人也不一定愛講話。找回自己的原廠設定，減少內耗。</p>
+                    <a href="#" class="resource-link">觀看筆記</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="tag">#人際關係</span>
+                    <h3 class="resource-title">怎麼跟不喜歡的人相處？為什麼他這麼令人受不了</h3>
+                    <p class="resource-desc">學校報告或打工遇到雷隊友？從心理學角度看見自己的「情緒按鈕」，將討厭的人轉化為自我覺察的機會。</p>
+                    <a href="#" class="resource-link">觀看筆記</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="tag">#自我成長</span>
+                    <h3 class="resource-title">鍛鍊覺察的肌肉：《內在自癒》設計你想要的人生</h3>
+                    <p class="resource-desc">把投資自己當作經營一家公司。透過自我探索與覺察，設計出符合自己核心價值的大學與未來生活。</p>
+                    <a href="#" class="resource-link">觀看筆記</a>
+                </div>
+
+            </div>
+            <p id="resourceNoResult" class="no-result">在資源庫中找不到相關內容。</p>
+        </section>
+    </div>
+
+    <script>
+        // FAQ 手風琴展開/收合邏輯
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = answer.classList.contains('active');
+                
+                // 關閉所有其他開啟的 FAQ
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.classList.remove('active');
+                    ans.style.maxHeight = null;
+                });
+
+                // 如果原本不是開啟狀態，則展開
+                if (!isActive) {
+                    answer.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 40 + "px"; // 加上 padding 高度
+                }
+            });
+        });
+
+        // 搜尋過濾邏輯
+        const searchInput = document.getElementById('searchInput');
+        
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            
+            // 過濾 FAQ
+            let faqVisibleCount = 0;
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = 'block';
+                    faqVisibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            document.getElementById('faqNoResult').style.display = faqVisibleCount === 0 ? 'block' : 'none';
+
+            // 過濾資源庫
+            let resourceVisibleCount = 0;
+            document.querySelectorAll('.resource-card').forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = 'flex';
+                    resourceVisibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            document.getElementById('resourceNoResult').style.display = resourceVisibleCount === 0 ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
